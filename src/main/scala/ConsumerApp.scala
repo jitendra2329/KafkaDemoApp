@@ -1,5 +1,5 @@
 
-import KafkaStreamsApp.Topics._
+import TopicCreationApp.Topics._
 import org.apache.kafka.clients.consumer.{ConsumerRecords, KafkaConsumer}
 import org.apache.kafka.streams.StreamsConfig
 
@@ -18,7 +18,7 @@ object ConsumerApp extends App {
   println("3. discount-profiles-by-user")
   println("4. payments")
 
-  val TOPIC = scala.io.StdIn.readInt() match {
+  private val TOPIC = scala.io.StdIn.readInt() match {
     case 1 => OrdersByUserTopic
     case 2 => DiscountsTopic
     case 3 => DiscountProfilesByUserTopic

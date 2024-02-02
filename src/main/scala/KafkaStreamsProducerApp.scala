@@ -1,4 +1,4 @@
-import KafkaStreamsApp.Topics._
+import TopicCreationApp.Topics._
 import org.apache.kafka.streams.StreamsConfig
 
 import java.util.concurrent.Future
@@ -16,7 +16,7 @@ object KafkaStreamsProducerApp extends App {
   props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
   props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer")
 
-  val producer = new KafkaProducer[String, String](props)
+  private val producer = new KafkaProducer[String, String](props)
 
   private def produceDiscount: Future[RecordMetadata] = {
 
@@ -39,6 +39,7 @@ object KafkaStreamsProducerApp extends App {
          |}""".stripMargin)
 
     println(s"producing to $DiscountsTopic")
+
     producer.send(profile1)
     producer.send(profile2)
     producer.send(profile3)
@@ -53,10 +54,10 @@ object KafkaStreamsProducerApp extends App {
 
   }
 
-  def uuid = java.util.UUID.randomUUID.toString
+  private def uuid = java.util.UUID.randomUUID.toString
 
-  val order1ID= s"order$uuid"
-  val order2ID= s"order$uuid"
+  private val order1ID= s"order$uuid"
+  private val order2ID= s"order$uuid"
 
  private def produceOrderByUser: Future[RecordMetadata] =  {
     val order1 = new ProducerRecord(OrdersByUserTopic, "Jitendra Kumar",
